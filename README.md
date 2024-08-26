@@ -5,7 +5,7 @@
 **Team Name:** Supernovas
 
 **Team Members:**
-- **Venkatesh Makkena** (Team Leader)
-- Harshith Akkapelli
+- **Harshith Akkapelli (Team Leader)**
+- Venkatesh Makkena
 - Neeharika Singh
 - Sanjay Bhargav Kudupudi
