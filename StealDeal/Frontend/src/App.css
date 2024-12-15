@@ -1,0 +1,12 @@
+.app-container {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  height: 100vh; /* Full viewport height */
+  width: 100%;
+}
+
+.main-content {
+  flex: 1; /* Allow main content to grow and take available space */
+  width: 100%;
+  margin-top: 100px;
+}

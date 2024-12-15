@@ -1,0 +1,8 @@
+.price-history-graph {/* Control the size of the graph */
+  margin: 40px auto; /* Center the graph with some space around */
+  padding: 20px;
+  background: white;
+  /* -webkit-linear-gradient(left, #667eea, #764ba2); White background to contrast with the violet page background */
+  border-radius: 10px; /* Slightly rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}

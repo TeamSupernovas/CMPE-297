@@ -1,0 +1,72 @@
+/* NavigationBar.css */
+
+nav {
+  background: green; /* Temporarily for testing */
+  width: 100vw; /* Use viewport width to ensure it covers the entire screen */
+  position: fixed; /* Ensure it's fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease-in-out;
+  background:-webkit-linear-gradient(left, #667eea, #764ba2); /* Gradient background */
+  border-bottom: 2px solid #f2f2f2;
+  padding: 1rem 2rem;
+  box-sizing: border-box; /* Include padding in width calculation */
+  margin-bottom: 200px;
+}
+
+/* Apply a shadow on the nav bar when scrolled */
+nav.scrolled {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between; /* Distribute space evenly */
+  align-items: center;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 1rem;
+}
+
+nav ul li a, nav ul li button {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600; /* Slightly bolder font for modern feel */
+  padding: 0.5rem 0;
+  transition: color 0.2s ease-in-out;
+}
+
+nav ul li a:hover, nav ul li button:hover {
+  color: #1a8cff; /* Bright but not overpowering blue */
+}
+
+nav ul li button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style the logo or brand name differently for emphasis */
+nav ul li.logo a {
+  font-weight: 700; /* Even bolder for the brand name */
+  color: #1a8cff; /* Brand color */
+  font-size: 1.25rem;
+}
+
+
+nav {
+
+}
+
+nav ul li a, nav ul li button {
+  color: #fff; /* White text */
+}
+
+nav ul li a:hover, nav ul li button:hover {
+  color: #333; /* Dark gray hover color */
+}
