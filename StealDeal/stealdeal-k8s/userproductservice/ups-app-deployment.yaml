@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ups-app-deployment
+  labels:
+    app: ups-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ups-app
+  template:
+    metadata:
+      labels:
+        app: ups-app
+    spec:
+      containers:
+        - name: ups-app-container
+          image: neeharikasingh/ups-app:0.6
+          ports:
+            - containerPort: 8082
+          env:
+            - name: POSTGRES_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: postgres_host
+            - name: POSTGRES_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: postgres_port
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: postgres_db
+            - name: POSTGRES_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ups-app-secret
+                  key: postgres_username
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ups-app-secret
+                  key: postgres_password
+            - name: PRODUCT_EVENT
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: product_event
+            - name: PRICE_EVENT
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: price_event
+            - name: NOTIFICATION_EVENT
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: notification_event
+            - name: KAFKA_SERVER
+              valueFrom:
+                configMapKeyRef:
+                  name: ups-app-configmap
+                  key: kafka_server
+            - name: KAFKA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ups-app-secret
+                  key: kafka_username
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ups-app-secret
+                  key: kafka_password

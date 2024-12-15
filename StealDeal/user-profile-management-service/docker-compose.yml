@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8088:8088"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=userprofileservice
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=userprofiledb
+      - DB_PORT=5432
+    networks:
+      - app-network
+
+  db:
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: userprofileservice
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: userprofiledb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+
+
+volumes:
+  postgres_data:
+
+networks:
+  app-network:
+    driver: bridge

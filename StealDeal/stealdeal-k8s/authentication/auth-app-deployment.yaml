@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-app-deployment
+  labels:
+    app: auth-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-app
+  template:
+    metadata:
+      labels:
+        app: auth-app
+    spec:
+      containers:
+        - name: auth-app-container
+          image: neeharikasingh/auth-app:0.6
+          ports:
+            - containerPort: 8098
+          env:
+            - name: CREDENTIALS_FILE
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-app-configmap
+                  key: credentials_file
+            - name: USER_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: auth-app-configmap
+                  key: user_service_url
+            - name: FIREBASE_WEB_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: auth-app-secret
+                  key: firebase_web_api_key
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: auth-app-secret
+                  key: jwt_secret
