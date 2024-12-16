@@ -1,4 +1,4 @@
-# Kubernetes Deployment Guide
+# StealDeal Deployment Guide
 
 This guide outlines the steps to set up a Kubernetes cluster using `kind` and deploy the multiple services, including an Nginx API Gateway, Authentication Backend, Web Scraping Service, User Profile Management Service, and User Product Service.
 (Note :  the *secret.yaml files have not been shared intentionally)
