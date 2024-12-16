@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Welcome, <span id="username">User</span>!</h2>
+    <p>Email: <span id="userEmail"></span></p>
+    <p>User ID: <span id="userId"></span></p>
+
+    <script>
+        $(document).ready(function() {
+            // Fetch user details from session (assuming they are stored in sessionStorage)
+            $('#username').text(sessionStorage.getItem('username') || 'Unknown');
+            $('#userEmail').text(sessionStorage.getItem('userEmail') || 'Unknown');
+            $('#userId').text(sessionStorage.getItem('userId') || 'Unknown');
+        });
+    </script>
+</body>
+</html>

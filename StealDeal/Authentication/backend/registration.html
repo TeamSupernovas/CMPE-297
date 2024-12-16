@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Registration</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>User Registration</h2>
+    <form id="registrationForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br>
+        <label for="personalDetails">Personal Details:</label><br>
+        <input type="text" id="personalDetails" name="personalDetails"><br>
+        <label for="private">Private:</label>
+        <input type="checkbox" id="private" name="private"><br>
+        <input type="submit" value="Register">
+    </form>
+<div id="qrCode" style="margin-top: 20px;"></div>
+
+    <div id="twoFactorAuth" style="margin-top: 20px; display: none;">
+        <h3>Two-Factor Authentication</h3>
+        <input type="text" id="twoFactorCode" placeholder="Enter 2FA Code">
+        <button onclick="verifyTwoFactor()">Verify</button>
+    </div>
+
+    <div id="responseMessage"></div>
+
+<script>
+    $(document).ready(function() {
+        $('#registrationForm').submit(function(event) {
+            event.preventDefault();
+            registerUser();
+        });
+    });
+
+    function registerUser() {
+        var formData = {
+            Username: $('#username').val(),
+            Email: $('#email').val(),
+            HashedPassword: $('#password').val(), // In a real app, you should hash the password before sending it
+            PersonalDetails: $('#personalDetails').val(),
+            Private: $('#private').is(':checked')
+        };
+
+        $.ajax({
+            url: 'http://localhost:8098/users',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+            sessionStorage.setItem('userId', response.userID);
+            console.log(response)
+                $('#responseMessage').html('User registered successfully. Please scan the QR code with your authenticator app and enter the 2FA code.');
+                $('#qrCode').html('<img src="http://localhost:8098/qr_code?email=' + encodeURIComponent(response.email) + '" />');
+                $('#twoFactorAuth').show();
+            },
+            error: function(xhr, status, error) {
+                $('#responseMessage').html('Error: ' + error.message);
+            }
+        });
+    }
+
+    function verifyTwoFactor() {
+        var twoFactorCode = $('#twoFactorCode').val();
+        var email = $('#email').val();
+
+        $.ajax({
+            url: 'http://localhost:8098/validate_2fa',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ email: email, token: twoFactorCode }),
+            success: function(response) {
+                // Store user details in sessionStorage
+                sessionStorage.setItem('username', $('#username').val());
+                sessionStorage.setItem('userEmail', email);
+                //sessionStorage.setItem('userId', response.userId); // Assuming the userId is returned from the server
+
+                // Redirect to welcome page
+                window.location.href = 'welcome.html';
+            },
+            error: function(xhr, status, error) {
+                $('#responseMessage').html('Error: ' + error.message);
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

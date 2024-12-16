@@ -1,0 +1,24 @@
+Flask
+requests
+jsonify
+flask
+firebase_admin
+requests
+pyotp
+Pillow
+Python-IO
+uuid
+flask
+pyjwt
+Flask
+jsonify
+flask_session
+flask_cors   # Import CORS
+firebase_admin
+firebase_admin 
+credentials
+firestore
+pyotp
+qrcode
+firebase-admin
+pyjwt

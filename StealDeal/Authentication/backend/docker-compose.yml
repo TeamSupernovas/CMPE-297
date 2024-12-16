@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  auth:
+    build: .
+    ports:
+      - "8098:8098"
+    environment:
+      FIREBASE_WEB_API_KEY: "AIzaSyDSDr_R7qMzgRE5puIOfrisFgYmvVS-XIg"
+      CREDENTIALS_FILE: "auth.json"
+      USER_SERVICE_URL: "http://a83ab0f0e6671462c87d9c3980002854-1490594495.us-west-2.elb.amazonaws.com/users"
+      JWT_SECRET: "expressNesters"
+
+
+
+
+    networks:
+      - shared_network
+    # Other configurations...
+
+
+networks:
+  shared_network:
+    external: true
