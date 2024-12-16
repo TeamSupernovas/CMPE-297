@@ -68,3 +68,20 @@ kubectl get all
   URL: http://localhost:30080/  
   This serves static files or routes requests as defined in the try_files directive.
 
+## Steps to run Frontend
+
+### Update your open ai keys in 
+./StealDeal/Frontend/src/Chat.js
+
+./StealDeal/Frontend/src/Recommender.js
+
+npm install
+
+npm start
+
+
+
+
+
+
+
